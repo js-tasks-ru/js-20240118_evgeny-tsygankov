@@ -1,5 +1,3 @@
-import { isSameAsPrev } from "./utils";
-
 /**
  * trimSymbols - removes consecutive identical symbols if they quantity bigger that size
  * @param {string} string - the initial string
