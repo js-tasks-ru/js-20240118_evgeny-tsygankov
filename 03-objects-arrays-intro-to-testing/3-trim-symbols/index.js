@@ -5,7 +5,7 @@
  * @returns {string} - the new string without extra symbols according passed size
  */
 export function trimSymbols(string, size) {
-  if (!Boolean(size)) {
+  if (!size) {
     return size === 0 ? "" : string;
   }
 

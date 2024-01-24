@@ -10,13 +10,13 @@ export function createGetter(path) {
     let currentObj = obj;
 
     for (const key of parsedPath) {
-      const value = currentObj[key];
-
-      if (!Boolean(value)) {
+      if (!currentObj.hasOwnProperty(key)) {
         return;
       }
 
-      if (typeof value !== "object") {
+      const value = currentObj[key];
+
+      if (value && typeof value !== "object") {
         return value;
       }
 
