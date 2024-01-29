@@ -1,3 +1,5 @@
+import { getColumnProps } from "./utils";
+
 export default class ColumnChart {
   chartHeight = 50;
   label;
@@ -47,7 +49,7 @@ export default class ColumnChart {
       : "";
   }
 
-  creteChartTemplate() {
+  createChartTemplate() {
     if (!this.#data.length) {
       return null;
     }
@@ -75,7 +77,7 @@ export default class ColumnChart {
     return `
       <div data-element="header" class="column-chart__header">${formattedHeader}</div>
         <div data-element="body" class="column-chart__chart">
-          ${this.creteChartTemplate()}
+          ${this.createChartTemplate()}
         </div>
       </div>
     `;
@@ -112,7 +114,7 @@ export default class ColumnChart {
    */
   update(updatedDate) {
     this.#data = updatedDate;
-    this.element.innerHTML = this.creteChartTemplate();
+    this.element.innerHTML = this.createChartTemplate();
   }
 
   /**
@@ -129,25 +131,4 @@ export default class ColumnChart {
     this.remove();
     this.element = null;
   }
-}
-
-/* 
-  utils
-  не получилось вынести в отдельный файл, проект не собирается для отображения в браузере
-*/
-/**
- * @param {number[]} data
- * @param {number} chartHeight
- * @returns {Array<{ percent: string; value: string }>}
- */
-export function getColumnProps(data, chartHeight) {
-  const maxValue = Math.max(...data);
-  const scale = chartHeight / maxValue;
-  const getStringPercent = (numberValue) =>
-    ((numberValue / maxValue) * 100).toFixed(0) + "%";
-
-  return data.map((numberItem) => ({
-    percent: getStringPercent(numberItem),
-    value: String(Math.floor(numberItem * scale)),
-  }));
 }
