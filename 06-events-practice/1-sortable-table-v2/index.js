@@ -1,11 +1,11 @@
 import SortableTable from "../../05-dom-document-loading/2-sortable-table-v1/index.js";
 
-const switchOrderByMap = {
-  asc: "desc",
-  desc: "asc",
-};
-
 export default class ExtendedSortableTable extends SortableTable {
+  switchOrderByMap = {
+    asc: "desc",
+    desc: "asc",
+  };
+
   #isSortLocally;
 
   constructor(
@@ -44,14 +44,14 @@ export default class ExtendedSortableTable extends SortableTable {
     orderBy &&
       super.sort(
         clickedElement.getAttribute("data-id"),
-        switchOrderByMap[orderBy]
+        this.switchOrderByMap[orderBy]
       );
   };
 
   handleCellClick = (event) => {
     const element = event.target.closest(".sortable-table__cell");
 
-    if (element.getAttribute("data-sortable") === "true") {
+    if (element && element.getAttribute("data-sortable") === "true") {
       this.sort(element);
     }
   };
