@@ -26,7 +26,7 @@ export default class SortableTable {
     return `<div class = "sortable-table__cell">${elementData}</div>`;
   }
 
-  creeateRowItemTemplate(dataElement) {
+  createRowItemTemplate(dataElement) {
     return `
       <a href="/products/${dataElement.id}" class="sortable-table__row">
         ${this.headerConfig
@@ -39,9 +39,7 @@ export default class SortableTable {
   }
 
   addRows() {
-    return this.data
-      .map((dataElement) => this.creeateRowItemTemplate(dataElement))
-      .join("");
+    return this.data.map(this.createRowItemTemplate.bind(this)).join("");
   }
   /* table rows - end */
 
